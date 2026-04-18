@@ -1,11 +1,40 @@
 var resultado = document.getElementById("resultado");
 var detalle = document.getElementById("detalle");
 
+window.onload = function () {
+
+  fetch("https://dragonball-api.com/api/characters?limit=100")
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (data) {
+      document.getElementById("chars").innerHTML = "Characters: " + data.meta.totalItems;
+    });
+
+  fetch("https://dragonball-api.com/api/transformations?limit=100")
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (data) {
+      document.getElementById("trans").innerHTML = "Transformations: " + data.meta.totalItems;
+    });
+
+  fetch("https://dragonball-api.com/api/planets?limit=100")
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (data) {
+      document.getElementById("planets").innerHTML = "Planets: " + data.meta.totalItems;
+    });
+
+};
+
+
 document.getElementById("mostrar").onclick = function () {
 
   var raza = document.getElementById("raza").value;
 
-  fetch("https://dragonball-api.com/api/characters")
+  fetch("https://dragonball-api.com/api/characters?limit=100")
     .then(function (res) {
       return res.json();
     })
@@ -44,9 +73,7 @@ document.getElementById("mostrar").onclick = function () {
           tabla += "</tr>";
         }
       }
-
       tabla += "</table>";
-
       resultado.innerHTML = tabla;
 
       window.lista = personajes;
@@ -63,6 +90,25 @@ function cerrarModal() {
   document.getElementById("modal").style.display = "none";
 }
 
+function mostrarTransformacion(index) {
+
+  var p = window.lista[index];
+
+  var combo = document.getElementById("comboTrans");
+  var pos = combo.value;
+
+  var t = p.transformations[pos];
+
+  var info = "<h4>" + t.name + "</h4>";
+  info += "<p>Ki: " + t.ki + "</p>";
+
+  if (t.image) {
+    info += "<img src='" + t.image + "' width='150'>";
+  }
+
+  document.getElementById("infoTrans").innerHTML = info;
+}
+
 
 function verDetalle(index) {
 
@@ -70,24 +116,23 @@ function verDetalle(index) {
 
   var texto = "<h2>" + p.name + "</h2>";
   texto += "<p>Raza: " + p.race + "</p>";
-  texto += "<p>Ki: " + p.ki + "</p>";
-  texto += "<p>Max Ki: " + p.maxKi + "</p>";
-  texto += "<p>Género: " + p.gender + "</p>";
-  texto += "<p>Afiliación: " + p.affiliation + "</p>";
-
   texto += "<img src='" + p.image + "' width='200'>";
 
   texto += "<h3>Transformaciones</h3>";
 
   if (p.transformations && p.transformations.length > 0) {
 
-    texto += "<ul>";
+    texto += "<select id='comboTrans'>";
 
-    for (var j = 0; j < p.transformations.length; j++) {
-      texto += "<li>" + p.transformations[j].name + "</li>";
+    for (var i = 0; i < p.transformations.length; i++) {
+      texto += "<option value='" + i + "'>" + p.transformations[i].name + "</option>";
     }
 
-    texto += "</ul>";
+    texto += "</select>";
+
+    texto += "<button onclick='mostrarTransformacion(" + index + ")'>VER</button>";
+
+    texto += "<div id='infoTrans'></div>";
 
   } else {
     texto += "<p>No tiene transformaciones</p>";
