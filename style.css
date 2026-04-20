@@ -1,24 +1,124 @@
+
 body {
-  background: #0b0f1a;
+  background: radial-gradient(circle at top, #1e3a8a, #020617);
   color: white;
-  font-family: Arial;
+  font-family: 'Trebuchet MS', Arial;
   text-align: center;
+  margin: 0;
+}
+h1 {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+              url("https://images.alphacoders.com/132/1322308.jpeg");
+  background-size: cover;
+  background-position: center;
+  padding: 60px;
+  font-size: 48px;
+  text-shadow: 0 0 10px #3b82f6, 0 0 20px #60a5fa;
+  letter-spacing: 3px;
+  border-bottom: 3px solid #3b82f6;
+}
+
+select {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: none;
+  margin: 15px;
+  font-size: 14px;
+  background: #111827;
+  color: white;
+  box-shadow: 0 0 10px #3b82f6;
+}
+
+button {
+  background: linear-gradient(45deg, #2563eb, #3b82f6);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #f97316, #fb923c);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #f97316, 0 0 25px #fb923c;
 }
 
 table {
   margin: auto;
   border-collapse: collapse;
+  margin-top: 25px;
+  background: #020617;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 85%;
+  box-shadow: 0 0 25px rgba(59,130,246,0.3);
+}
+
+th {
+  background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 td, th {
-  padding: 10px;
-  border: 1px solid #444;
+  padding: 12px;
+  border-bottom: 1px solid #1e293b;
 }
 
-button {
-  background: #3b82f6;
+tr:hover {
+  background: #1e293b;
+  transform: scale(1.01);
+  transition: 0.2s;
+}
+
+#detalle {
+  margin-top: 30px;
+  padding: 25px;
+  background: #020617;
+  border-radius: 15px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 20px rgba(59,130,246,0.4);
+  border: 1px solid #3b82f6;
+}
+
+img {
+  margin-top: 10px;
+  border-radius: 12px;
+  max-width: 100%;
+  box-shadow: 0 0 15px #3b82f6;
+}
+
+
+#modal {
+  box-shadow: 0 0 30px #3b82f6, 0 0 60px #60a5fa;
+  border-radius: 15px;
+  background: #020617;
   color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
+  padding: 20px;
+  border: 2px solid #3b82f6;
+}
+
+#modal button {
+  background: #ef4444;
+}
+
+#modal button:hover {
+  background: #dc2626;
+  box-shadow: 0 0 10px red;
+}
+
+@keyframes aura {
+  0% { box-shadow: 0 0 10px #3b82f6; }
+  50% { box-shadow: 0 0 25px #60a5fa; }
+  100% { box-shadow: 0 0 10px #3b82f6; }
+}
+
+#detalle:hover {
+  animation: aura 1.5s infinite;
 }
